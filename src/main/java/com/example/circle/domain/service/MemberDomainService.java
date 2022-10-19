@@ -1,7 +1,7 @@
 package com.example.circle.application.service;
 
-import com.example.circle.application.dto.CreateMemberDto;
-import com.example.circle.application.dto.UpdateMemberDto;
+import com.example.circle.domain.dto.CreateMemberDto;
+import com.example.circle.domain.dto.UpdateMemberDto;
 import com.example.circle.domain.entity.Member;
 import com.example.circle.domain.entity.MemberGrade;
 import com.example.circle.domain.repository.MemberRepository;
@@ -11,7 +11,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 @Service
 @RequiredArgsConstructor
-public class MemberCommandService {
+public class MemberDomainService {
     private final MemberRepository memberRepository;
     @Transactional
     public Long createMember(CreateMemberDto input) {
@@ -31,6 +31,5 @@ public class MemberCommandService {
                 new MemberGrade(updateMemberDto.getGradeDisplayName()),
                 updateMemberDto.getEmail()
         );
-        System.out.println(member.getEmail());
     }
 }

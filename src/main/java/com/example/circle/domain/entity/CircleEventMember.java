@@ -8,20 +8,21 @@ import javax.persistence.*;
 @Entity
 @Getter
 @NoArgsConstructor
-public class CircleMember {
+@Table(name = "circle_event_member")
+public class CircleEventMember {
     @Id @GeneratedValue
     private Long id;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "circle_id")
-    private Circle circle;
+    @JoinColumn(name = "circle_event_id")
+    private CircleEvent circleEvent;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "member_id")
     private Member member;
 
-    public CircleMember(Circle circle, Member member) {
-        this.circle = circle;
+    public CircleEventMember(CircleEvent circleEvent, Member member) {
+        this.circleEvent = circleEvent;
         this.member = member;
     }
 }

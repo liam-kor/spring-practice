@@ -1,4 +1,4 @@
-package com.example.circle.application.dto;
+package com.example.circle.domain.dto;
 
 import com.example.circle.domain.entity.MemberGrade;
 import com.example.circle.domain.entity.MemberGradeDisplayName;

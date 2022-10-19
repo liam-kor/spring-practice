@@ -1,4 +1,4 @@
-package com.example.circle.service;
+package com.example.circle.domain;
 
 import com.example.circle.domain.entity.MemberGrade;
 import com.example.circle.domain.entity.MemberGradeDisplayName;

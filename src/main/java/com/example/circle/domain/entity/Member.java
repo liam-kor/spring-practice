@@ -22,7 +22,10 @@ public class Member {
     private String email;
 
     @OneToMany(mappedBy = "member", orphanRemoval = true)
-    private List<CircleMember> circleMembers = new ArrayList<>();
+    private List<CircleMember> joinedCircles = new ArrayList<>();
+
+    @OneToMany(mappedBy = "member", orphanRemoval = true)
+    private List<CircleEventMember> joinedCircleEvents = new ArrayList<>();
 
     @Embedded
     private MemberGrade grade; // 멤버 등급

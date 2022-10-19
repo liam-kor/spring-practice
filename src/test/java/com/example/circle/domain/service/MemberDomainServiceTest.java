@@ -1,8 +1,9 @@
-package com.example.circle.service;
+package com.example.circle.domain.service;
 
-import com.example.circle.application.dto.CreateMemberDto;
-import com.example.circle.application.dto.UpdateMemberDto;
-import com.example.circle.application.service.MemberCommandService;
+
+import com.example.circle.domain.dto.CreateMemberDto;
+import com.example.circle.domain.dto.UpdateMemberDto;
+import com.example.circle.application.service.MemberDomainService;
 import com.example.circle.domain.entity.Member;
 import com.example.circle.domain.entity.MemberGrade;
 import com.example.circle.domain.entity.MemberGradeDisplayName;
@@ -17,10 +18,10 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 @SpringBootTest
 @Transactional
-public class MemberCommandServiceTest {
+public class MemberDomainServiceTest {
 
     @Autowired
-    MemberCommandService memberCommandService;
+    MemberDomainService memberDomainService;
 
     @Autowired
     MemberRepository memberRepository;
@@ -34,7 +35,7 @@ public class MemberCommandServiceTest {
         CreateMemberDto createMemberDto = new CreateMemberDto(memberName, memberGradeDisplayName, email);
 
         // when
-        Long memberId = memberCommandService.createMember(createMemberDto);
+        Long memberId = memberDomainService.createMember(createMemberDto);
         Member createdMember = memberRepository.findById(memberId).get();
 
         // then
@@ -52,7 +53,7 @@ public class MemberCommandServiceTest {
 
         // when & then
         Assertions.assertThrows(IllegalArgumentException.class, () -> {
-            memberCommandService.createMember(createMemberDto);
+            memberDomainService.createMember(createMemberDto);
         });
     }
 
@@ -67,7 +68,7 @@ public class MemberCommandServiceTest {
         String changedMemberName = "수정된 멤버명";
         UpdateMemberDto updateMemberDto = new UpdateMemberDto(changedMemberName, memberGradeDisplayName, email);
 
-        memberCommandService.updateMember(createdMember.getId(), updateMemberDto);
+        memberDomainService.updateMember(createdMember.getId(), updateMemberDto);
 
         Member updatedMember = memberRepository.findById(createdMember.getId()).get();
         assertThat(updatedMember.getUserName()).isEqualTo(changedMemberName);
@@ -85,7 +86,7 @@ public class MemberCommandServiceTest {
         UpdateMemberDto updateMemberDto = new UpdateMemberDto(memberName, memberGradeDisplayName, changedWrongEmail);
 
         Assertions.assertThrows(IllegalArgumentException.class, () -> {
-            memberCommandService.updateMember(createdMember.getId(), updateMemberDto);
+            memberDomainService.updateMember(createdMember.getId(), updateMemberDto);
         });
     }
 }

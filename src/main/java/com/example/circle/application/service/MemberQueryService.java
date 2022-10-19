@@ -1,6 +1,6 @@
 package com.example.circle.application.service;
 
-import com.example.circle.application.dto.MemberDto;
+import com.example.circle.domain.dto.MemberDto;
 import com.example.circle.application.mapper.MemberMapper;
 import com.example.circle.domain.entity.Member;
 import com.example.circle.domain.repository.MemberRepository;
